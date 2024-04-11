@@ -1,14 +1,315 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
-    {% if title %}
-        <p>{{ content }}</p>
-    {% endif %}
-    <p>{{ list.0 }}</p>
-</body>
-</html>
+{% extends "main/base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+    <div class="section-carousel">
+      <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="col-lg-1 col-md-12">
+
+          </div>
+
+          <div class="col-lg-10 col-md-12">
+            <div class="row">
+              <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <a href="new_goods.html"><img src="{% static "deps/images/newCollection.jpg" %}" class="d-block w-100"
+                        alt="..."></a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="balls.html"><img src="{% static "deps/images/Мячи_реклама_3.jpg" %}" class="d-block w-100"
+                        alt="..."></a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="sneakers.html"><img src="{% static "deps/images/Кроссовки_реклама_2.jpg" %}" class="d-block w-100"
+                        alt="..."></a>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-action">
+      <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="col-lg-1 col-md-12">
+          </div>
+          <div class="col-lg-10 col-md-12">
+            <div class="action-text">
+              <h2><a href="action.html">Акции</a></h2>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-12">
+          </div>
+          <div class="container-fluid mt-2">
+            <div class="row">
+              <div class="col-lg-1 col-md-12">
+              </div>
+              <div class="col-lg-10 col-md-12">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card custom-shadow">
+                      <a href="card_good.html"><img src="{% static "deps/images/Горный велосипед_1.jpeg" %}" class="card-img-top"
+                          alt="..."></a>
+                      <div class="card-body">
+                        <span class="badge bg-warning text-dark">Скидка 10%</span>
+                        <a href="card_good.html">
+                          <h5 class="card-title">Горный велосипед 707W</h5>
+                        </a>
+                        <a href="card_good.html">
+                          <div class="text-truncate-container">
+                            <p class="card-text">Исследуйте дикую природу с нашим горным велосипедом 707W,
+                              созданным
+                              для приключений на самых сложных трассах. Оснащенный прочной рамой и надежными
+                              компонентами, этот велосипед обеспечит вам уверенное сцепление с поверхностью и
+                              маневренность в каждом повороте. Выберите свой путь и отправляйтесь в путешествие с
+                              велосипедом, который готов преодолевать любые препятствия.</p>
+                          </div>
+                        </a>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">id: 10001</li>
+                      </ul>
+                      <div class="d-flex justify-content-between">
+                        <p><s>45990₽</s></p>
+                        <p><strong>41390₽</strong>
+                        </p>
+                        <a href="#" class="btn">
+                          <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card custom-shadow">
+                      <a href="#"><img src="{% static "deps/images/Тренажер_2_2.jpeg" %}" class="card-img-top" alt="..."></a>
+                      <div class="card-body">
+                        <span class="badge bg-warning text-dark">Скидка 10%</span>
+                        <a href="#">
+                          <h5 class="card-title">Беговая дорожка K790</h5>
+                        </a>
+                        <a href="#">
+                          <div class="text-truncate-container">
+                            <p class="card-text">
+                              Откройте новые горизонты здоровья и фитнеса с беговой дорожкой K790! Этот
+                              современный тренажер предлагает широкий спектр функций для эффективных тренировок
+                              прямо у вас дома. С мощным двигателем, прочной конструкцией и разнообразными
+                              программами тренировок, она идеально подходит как для начинающих, так и для опытных
+                              бегунов. Готовы ли вы окунуться в мир здоровья и фитнеса с беговой дорожкой K790?
+                            </p>
+                          </div>
+                        </a>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">id: 40002</li>
+                      </ul>
+                      <div class="d-flex justify-content-between">
+                        <p><s>28990₽</s></p>
+                        <p><strong>26000₽</strong>
+                        </p>
+                        <a href="#" class="btn">
+                          <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card custom-shadow">
+                      <a href="#"><img src="{% static "deps/images/Бутылка_3_1.jpeg" %}" class="card-img-top" alt="..."></a>
+                      <div class="card-body">
+                        <span class="badge bg-warning text-dark">Скидка 10%</span>
+                        <a href="#">
+                          <h5 class="card-title">Бутылка для воды</h5>
+                        </a>
+                        <a href="#">
+                          <div class="text-truncate-container">
+                            <p class="card-text">
+                              Вода - основа жизни, а бутылка для воды - ваш верный спутник в повседневных занятиях
+                              и тренировках. Независимо от того, вы находитесь в офисе, на тренировке или
+                              прогулке, наша бутылка для воды обеспечит ваш организм жизненно важной жидкостью. Ее
+                              прочный материал и удобный дизайн делают ее идеальным выбором для активного образа
+                              жизни.
+                            </p>
+                          </div>
+                        </a>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">id: 50001</li>
+                      </ul>
+                      <div class="d-flex justify-content-between">
+                        <p><s>450₽</s></p>
+                        <p><strong>405₽</strong>
+                        </p>
+                        <a href="#" class="btn">
+                          <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-new">
+      <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="col-lg-1 col-md-12">
+          </div>
+          <div class="col-lg-10 col-md-12">
+            <div class="action-text">
+              <h2><a href="new_goods.html">Новинки</a></h2>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-12">
+          </div>
+          <div class="container-fluid mt-4">
+            <div class="row">
+              <div class="col-lg-1 col-md-12">
+              </div>
+              <div class="col-lg-10 col-md-12">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card custom-shadow">
+                      <a href="#"><img src="{% static "deps/images/Насос_4_3.jpeg" %}" class="card-img-top" alt="..."></a>
+                      <div class="new">
+                        <div class="card-body">
+                          <span class="badge bg-warning text-dark">Новинка</span>
+                          <a href="#">
+                            <h5 class="card-title">Насос для мячей</h5>
+                          </a>
+                          <a href="#">
+                            <div class="text-truncate-container">
+                              <p class="card-text">
+                                Погрузитесь в мир игры с нашим универсальным насосом для мячей! Этот компактный и
+                                эффективный насос предназначен для накачивания различных видов мячей - футбольных,
+                                баскетбольных, волейбольных и многих других. Благодаря своей прочной конструкции и
+                                удобному дизайну, вы сможете быстро и легко накачать свой мяч, готовый к игре в
+                                любое время. Добавьте наш насос для мячей в свою спортивную арсеналь, и вы всегда
+                                будете готовы к игре.
+                              </p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">id: 50004</li>
+                      </ul>
+                      <div class="d-flex justify-content-between">
+                        <p><strong>590₽</strong>
+                        </p>
+                        <!-- <p><strong>41390₽</strong></p> -->
+                        <a href="#" class="btn">
+                          <img class="mx-1" src="{% static "static/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card custom-shadow">
+                      <a href="#"><img src="{% static "deps/images/Горный_велосипед_6_6.jpeg" %}" class="card-img-top" alt="..."></a>
+                      <div class="new">
+                        <div class="card-body">
+                          <span class="badge bg-warning text-dark">Новинка</span>
+                          <a href="#">
+                            <h5 class="card-title">Горный велосипед 505X</h5>
+                          </a>
+                          <a href="#">
+                            <div class="text-truncate-container">
+                              <p class="card-text">
+                                Покоряйте вершины с горным велосипедом 505X! Этот велосипед идеально подходит для
+                                тех, кто стремится к новым высотам и неповторимым приключениям. С прочной рамой и
+                                передовыми технологиями он обеспечивает надежность и комфорт на любых трассах.
+                                Готовьтесь к захватывающим поездкам и увлекательным открытиям с горным велосипедом
+                                505X!</p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">id: 10006</li>
+                      </ul>
+                      <div class="d-flex justify-content-between">
+                        <p><strong>37990₽</strong><img src="{% static "deps/images/Рубль.svg" %}" alt="" width="12" height="12">
+                        </p>
+                        <!-- <p><strong>41390₽</strong></p> -->
+                        <a href="#" class="btn">
+                          <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card custom-shadow">
+                      <a href="#"><img src="{% static "deps/images/Тренажер_1_1.jpeg" %}" class="card-img-top" alt="..."></a>
+                      <div class="new">
+                        <div class="card-body">
+                          <span class="badge bg-warning text-dark">Новинка</span>
+                          <a href="#">
+                            <h5 class="card-title">Тренажер N524</h5>
+                          </a>
+                          <a href="#">
+                            <div class="text-truncate-container">
+                              <p class="card-text">
+                                Добро пожаловать в мир фитнеса с тренажером N524! Этот многофункциональный
+                                тренажер предлагает разнообразные упражнения для всего тела, помогая вам достичь
+                                ваших фитнес-целей. С его эргономичным дизайном и прочной конструкцией, вы сможете
+                                комфортно заниматься как дома, так и в тренажерном зале. Готовы ли вы принять
+                                вызов и начать путь к здоровому образу жизни с тренажером N524?</p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">id: 40001</li>
+                      </ul>
+                      <div class="d-flex justify-content-between">
+                        <p><strong>12990₽</strong></p>
+                        <!-- <p><strong>41390₽</strong></p> -->
+                        <a href="#" class="btn">
+                          <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
