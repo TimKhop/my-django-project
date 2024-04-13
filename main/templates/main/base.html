@@ -59,27 +59,11 @@
           </nav>
           <div class="nav-bar-bottom">
             <ul class="nav justify-content-between mt-2">
-              <li class="nav-item">
-                <a class="nav-link" href="action.html">Акции</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="new_goods.html">Новинки</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url "catalog:index" %}">Велосипеды</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url "catalog:index" %}">Мячи</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url "catalog:index" %}">Кроссовки</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url "catalog:index" %}">Тренажеры</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url "catalog:index" %}">Спортивный инвентарь</a>
-              </li>
+              {% for category in categories %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "catalog:index" %}">{{ category.name }}</a>
+                </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
