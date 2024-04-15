@@ -14,19 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from app.settings import DEBUG
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
+
+from app import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
-    path('catalog/', include('goods.urls', namespace='catalog'))
+    path('catalog/', include('goods.urls', namespace='catalog')),
+
+    path('', include('goods.urls', namespace='action')),
+    path('', include('goods.urls', namespace='new_goods')),
+    path('', include('goods.urls', namespace='catalog_bicycle')),
+    path('', include('goods.urls', namespace='balls')),
+    path('', include('goods.urls', namespace='sneakers')),
+    path('', include('goods.urls', namespace='trainer')),
+    path('', include('goods.urls', namespace='sports_equipment'))
 ]
 
 
-if DEBUG:
+if settings.DEBUG:
     urlpatterns += [
-path("__debug__/", include("debug_toolbar.urls"))
+        path("__debug__/", include("debug_toolbar.urls")),
     ]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

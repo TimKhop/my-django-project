@@ -78,14 +78,18 @@
                             <div class="col-lg-9 col-md-12">
                                 <div class="row">
 
-
-
                                     {% for cart in catalog_cart %}
                                         <div class="col-lg-4 col-md-6 mt-4">
                                             <div class="card">
-                                                <a href="catalog_bicycle.html"><img
-                                                        src="{% static cart.image %}" class="card-img-top"
-                                                        alt="..."></a>
+                                                {% if cart.image %}
+                                                    <a href="catalog_bicycle.html"><img
+                                                        src="{{ cart.image.url }}" class="card-img-top"
+                                                        alt="{{ cart.name }}"></a>
+                                                {% else %}
+                                                    <a href="catalog_bicycle.html"><img
+                                                        src="{% static "deps/images/image_not_found.jpg" %}" class="card-img-top"
+                                                        lt="..."></a>
+                                                {% endif %}
                                                 <div class="card-body">
                                                     <p class="card-text"><a
                                                             href="catalog_bicycle.html">{{ cart.name }}</a></p>
@@ -94,11 +98,6 @@
                                         </div>
                                     {% endfor %}
 
-
-
-
-
-                                    
                                 </div>
                             </div>
                         </div>
