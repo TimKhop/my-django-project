@@ -15,13 +15,13 @@
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="img_card_good">
-                                        <img src="static/images/Горный велосипед_1.jpeg" alt="" width="80%">
+                                        <img src="{{ product.image.url }}" alt="" width="80%">
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item id_card_good">id: 10001</li>
+                                        <li class="list-group-item id_card_good">id: {{ product.display_id }}</li>
                                     </ul>
                                     <div class="justify-content-between">
-                                        <p><strong>Цена: 41390₽</strong>
+                                        <p><strong>Цена: {{ product.sell_price }}₽</strong>
                                         </p>
                                     </div>
                                     <div class="btn-row">
@@ -35,13 +35,9 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <a href="card_good.html">
-                                        <h5 class="card-title">Горный велосипед 707W</h5>
+                                        <h5 class="card-title">{{ product.name }}</h5>
                                       </a>
-                                    <p class="card-text">Исследуйте дикую природу с нашим горным велосипедом 707W, созданным
-                                        для приключений на самых сложных трассах. Оснащенный прочной рамой и надежными
-                                        компонентами, этот велосипед обеспечит вам уверенное сцепление с поверхностью и
-                                        маневренность в каждом повороте. Выберите свой путь и отправляйтесь в путешествие с
-                                        велосипедом, который готов преодолевать любые препятствия.</p>
+                                    <p class="card-text">{{ product.description }}</p>
                                 </div>
                             </div>
                         </div>

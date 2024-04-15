@@ -93,15 +93,15 @@
                       {% for cart in catalog_cart_new_goods %}
                       <div class="col-lg-4 col-md-6 mt-4">
                         <div class="card custom-shadow">
-                          <a href="#"><img src="{{ cart.image.url }}" class="card-img-top"
+                          <a href="{% url "catalog:product" cart.slug %}"><img src="{{ cart.image.url }}" class="card-img-top"
                               alt="{{ cart.image }}"></a>
                           <div class="new">
                             <div class="card-body">
                               <span class="badge bg-warning text-dark">Новинка</span>
-                              <a href="#">
+                              <a href="{% url "catalog:product" cart.slug %}">
                                 <h5 class="card-title">{{ cart.name }}</h5>
                               </a>
-                              <a href="#">
+                              <a href="{% url "catalog:product" cart.slug %}">
                                 <div class="text-truncate-container">
                                   <p class="card-text">{{ cart.description }}</p>
                                 </div>

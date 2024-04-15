@@ -24,8 +24,9 @@ from app import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
-    path('catalog/', include('goods.urls', namespace='catalog')),
 
+    path('', include('goods.urls', namespace='catalog')),
+    path('', include('goods.urls', namespace='catalog')),    
     path('', include('goods.urls', namespace='action')),
     path('', include('goods.urls', namespace='new_goods')),
     path('', include('goods.urls', namespace='catalog_bicycle')),

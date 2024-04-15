@@ -78,11 +78,11 @@
                             <div class="col-lg-9 col-md-12">
                                 <div class="row">
 
-                                    {% for cart in catalog_cart %}
+                                    {% for cart in catalog %}
                                         <div class="col-lg-4 col-md-6 mt-4">
                                             <div class="card">
                                                 {% if cart.image %}
-                                                    <a href="catalog_bicycle.html"><img
+                                                    <a href="{% url "catalog:product" cart.slug %}"><img
                                                         src="{{ cart.image.url }}" class="card-img-top"
                                                         alt="{{ cart.name }}"></a>
                                                 {% else %}

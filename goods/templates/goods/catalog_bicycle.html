@@ -100,7 +100,7 @@
                       {% for cart in catalog_cart_bicycle %}
                       <div class="col-lg-4 col-md-6 mt-4">
                         <div class="card custom-shadow">
-                          <a href="#"><img src="{{ cart.image.url }}"
+                          <a href="{% url "catalog:product" cart.slug %}"><img src="{{ cart.image.url }}"
                               class="card-img-top" alt="{{ cart.name }}"></a>
                           <div class="card-body">
 
@@ -115,10 +115,10 @@
                               <span class="badge"> </span>
                             {% endif %}
 
-                            <a href="card_good.html">
+                            <a href="{% url "catalog:product" cart.slug %}">
                               <h5 class="card-title">{{ cart.name }}</h5>
                             </a>
-                            <a href="card_good.html">
+                            <a href="{% url "catalog:product" cart.slug %}">
                               <div class="text-truncate-container">
                                 <p class="card-text">{{ cart.description }}</p>
                               </div>

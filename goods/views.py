@@ -9,17 +9,24 @@ from django.db.models import Q
 
 def catalog(request):
 
-    catalog_cart = Categories.objects.all()
+    catalog = Categories.objects.all()
 
     context = {
         "title": "Спорт Лайн - Каталог",
-        "catalog_cart": catalog_cart,
+        "catalog": catalog,
     }
     return render(request, "goods/catalog.html", context)
 
 
-def product(request):
-    return render(request, "goods/product.html")
+def product(request, product_slug):
+
+    product = Products.objects.get(slug=product_slug) # type: ignore
+
+    context = {
+        'product': product
+    }
+
+    return render(request, "goods/product.html", context)
 
 
 def action(request):
