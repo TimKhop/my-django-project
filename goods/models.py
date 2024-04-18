@@ -44,7 +44,7 @@ class Products(models.Model):
         verbose_name="Категория",
         related_name="c",
     )
-    new = models.CharField(max_length=150, verbose_name="Навинки", blank=True, null=True)
+    new = models.CharField(max_length=150, verbose_name="Новинки", blank=True, null=True)
 
     class Meta:
         db_table = "product"

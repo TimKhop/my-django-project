@@ -14,5 +14,7 @@ urlpatterns = [
     path('balls/', views.balls, name='balls'),
     path('sneakers/', views.sneakers, name='sneakers'),
     path('trainer/', views.trainer, name='trainer'),
-    path('sports_equipment/', views.sports_equipment, name='sports_equipment')
+    path('sports_equipment/', views.sports_equipment, name='sports_equipment'),
+
+    path('/products/<slug:category_slug>', views.products_by_category, name='category'),
 ]

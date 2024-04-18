@@ -5,12 +5,13 @@ from django.shortcuts import render
 
 from goods.models import Categories, Products
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
+
 
 
 def catalog(request):
 
     catalog = Categories.objects.all()
-
     context = {
         "title": "Спорт Лайн - Каталог",
         "catalog": catalog,
@@ -104,3 +105,8 @@ def sports_equipment(request):
     }
 
     return render(request, "goods/sports_equipment.html", context)
+
+def products_by_category(request, category_slug):
+    category = get_object_or_404(Categories, slug=category_slug)
+    products = Products.objects.filter(category=category)
+    return render(request, "goods/catalog_category.html", {'products': products, 'category': category})
