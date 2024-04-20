@@ -56,7 +56,7 @@ class Products(models.Model):
         return f"{self.name} Количество - {self.quantity}"
     
     def display_id(self):
-        return f"1{self.id:04}"
+        return f"{self.id:05}"
 
     def sell_price(self):
         if self.discount:

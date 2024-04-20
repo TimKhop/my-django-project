@@ -2,7 +2,8 @@ from pickle import GET
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from goods.models import Categories, Products  # Обновленный импорт
+from goods.models import Categories, Products
+from goods.utils import q_search  # Обновленный импорт
 
 
 def catalog(request):
@@ -62,12 +63,17 @@ def new_goods(request):
     )
 
 
-def catalog_category(request, category_slug):
+def catalog_category(request, category_slug=None):
     on_sale = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', None)
+    query = request.GET.get('q', None)
 
-    category = get_object_or_404(Categories, slug=category_slug)
-    products = Products.objects.filter(category=category)  # Получение товаров выбранной категории
+    if query:
+        products = q_search(query)
+        category = None  # Поскольку мы ищем товары по запросу, категория не определена
+    else:
+        category = get_object_or_404(Categories, slug=category_slug)
+        products = Products.objects.filter(category=category)  # Получение товаров выбранной категории
 
     if on_sale:
         products = products.filter(discount__gt=0)
@@ -77,11 +83,12 @@ def catalog_category(request, category_slug):
 
     catalog = Categories.objects.all()  # Использование модели Categories
 
+    title = f"Спорт Лайн - Каталог - {category.name}" if category else "Спорт Лайн - Результаты поиска"
     return render(
         request,
         "goods/catalog_category.html",
         {
-            "title": f"Спорт Лайн - Каталог - {category.name}",
+            "title": title,
             "products": products,
             "category": category,
             "catalog": catalog,

@@ -49,8 +49,8 @@
                         width="24" height="24"></a>
                   </li>
                 </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                <form class="d-flex" role="search" action="{% url "goods:search" %}" method="get">
+                  <input class="form-control me-2" type="search" placeholder="Поиск" name="q" aria-label="Search">
                   <button class="btn btn-outline-success btn-color btn-color" type="submit"><img
                       src="{% static "deps/images/search.svg" %}" alt="" width="20" height="20"></button>
                 </form>
