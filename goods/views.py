@@ -1,3 +1,4 @@
+from pickle import GET
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
@@ -15,10 +16,11 @@ def product(request, product_slug):
     return render(request, "goods/product.html", {"product": product})
 
 
-def action(request, page=1):
+def action(request):
+    page = request.GET.get('page', 1)
     catalog_cart_action = Products.objects.filter(~Q(discount=0.00))
     paginator = Paginator(catalog_cart_action, 9)
-    current_page = paginator.page(page)
+    current_page = paginator.page(int(page))
     return render(
         request,
         "goods/action.html",

@@ -97,17 +97,19 @@
                       <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             <li class="page-item {% if not catalog_cart_action.has_previous %}disabled{% endif %}">
-                                <a class="page-link" href="{% if catalog_cart_action.has_previous %}{% url "action:action" catalog_cart_action.previous_page_number %}{% else %}#{% endif %}">Назад</a>
+                                <a class="page-link" href="{% if catalog_cart_action.has_previous %}?page={{ catalog_cart_action.previous_page_number }}
+                                {% else %}#{% endif %}">Назад</a>
                             </li>
-                    
+                        
                             {% for page in catalog_cart_action.paginator.page_range %}
                             <li class="page-item {% if catalog_cart_action.number == page %}active{% endif %}">
-                              <a class="page-link" href="{% url "action:action" page %}">{{ page }}</a>
+                                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
                             </li>
                             {% endfor %}
-                    
+                        
                             <li class="page-item {% if not catalog_cart_action.has_next %}disabled{% endif %}">
-                                <a class="page-link" href="{% if catalog_cart_action.has_next %}{% url "action:action" catalog_cart_action.next_page_number %}{% else %}#{% endif %}">Далее</a>
+                                <a class="page-link" href="{% if catalog_cart_action.has_next %}?page={{ catalog_cart_action.next_page_number }}
+                                {% else %}#{% endif %}">Далее</a>
                             </li>
                         </ul>
                     </nav>
