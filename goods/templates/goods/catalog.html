@@ -14,62 +14,40 @@
                             <div class="col-lg-3 col-md-12 mt-4">
                                 <div class="block catalog">
                                     <h3 class="title">
-                                        <a href="catalog.html">
+                                        <a href="{% url "catalog:catalog" %}">
                                             <span class="text">Каталог</span>
                                         </a>
                                     </h3>
-                                    <div class="content">
-                                        <ul>
-                                            <li>
-                                                <a href="catalog_bicycle.html">
-                                                    Велосипеды
-                                                </a>
+                                    <div class="content name_catalog_left mx-2">
+                                        {% for category in catalog %}
+                                            <li class="nav-item">
+                                                <a class="nav-link p-0 pt-2" href="{% url "goods:category" category.slug %}">{{ category.name }}</a>
                                             </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                <a href="balls.html">
-                                                    Мячи
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                <a href="sneakers.html">
-                                                    Кроссовки
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                <a href="trainer.html">
-                                                    Тренажеры
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                <a href="sports_equipment.html">
-                                                    Спортивный инвентарь
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class="left_catalog_action">
-                                    <div class="card mt-3">
-                                        <a href="action.html"><img src="static/images/Банер акция.jpg"
-                                                class="card-img-top" alt="..."></a>
-                                        <div class="card-body">
-                                            <p class="card-text"><a href="action.html">Только сегодня, акции на
-                                                    велосипеды</a></p>
+                                    {% if catalog %}
+                                        <div class="card mt-3">
+                                            {% for category in catalog|slice:":1" %}
+                                            <a href="{% url "goods:category" category.slug %}">
+                                                <img src="{% static "deps/images/Банер_акция.jpg" %}" class="card-img-top" alt="...">
+                                            </a>
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    <a href="{% url "goods:category" category.slug %}">Только сегодня, акции на велосипеды</a>
+                                                </p>
+                                            </div>
+                                            {% endfor %}
                                         </div>
-                                    </div>
+                                    {% endif %}
                                     <div class="card mt-3">
-                                        <a href="new_goods.html"><img src="static/images/Банер акция_2.jpg"
-                                                class="card-img-top" alt="..."></a>
+                                        <a href="{% url 'goods:new_goods' %}">
+                                            <img src="{% static "deps/images/Банер_акция_2.jpg" %}" class="card-img-top" alt="...">
+                                        </a>
                                         <div class="card-body">
-                                            <p class="card-text"><a href="new_goods.html">Новые поступления</a>
+                                            <p class="card-text">
+                                                <a href="{% url 'goods:new_goods' %}">Новые поступления</a>
                                             </p>
                                         </div>
                                     </div>
@@ -77,26 +55,6 @@
                             </div>
                             <div class="col-lg-9 col-md-12">
                                 <div class="row">
-
-                                    {% comment %} {% for cart in catalog %}
-                                        <div class="col-lg-4 col-md-6 mt-4">
-                                            <div class="card">
-                                                {% if cart.image %}
-                                                    <a href="{% url "catalog:catalog" cart.image %}"><img
-                                                        src="{{ cart.image.url }}" class="card-img-top"
-                                                        alt="{{ cart.name }}"></a>
-                                                {% else %}
-                                                    <a href="catalog_bicycle.html"><img
-                                                        src="{% static "deps/images/image_not_found.jpg" %}" class="card-img-top"
-                                                        lt="..."></a>
-                                                {% endif %}
-                                                <div class="card-body">
-                                                    <p class="card-text"><a
-                                                            href="catalog_bicycle.html">{{ cart.name }}</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endfor %} {% endcomment %}
                                     {% for cart in catalog %}
                                         <div class="col-lg-4 col-md-6 mt-4">
                                             <div class="card">
@@ -109,7 +67,6 @@
                                             </div>
                                         </div>
                                     {% endfor %}
-
                                 </div>
                             </div>
                         </div>

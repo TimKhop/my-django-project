@@ -48,39 +48,11 @@
                   <h4>Каталог</h4>
                   <div class="content-left-catalog">
                     <ul>
-                      <li>
-                        <a href="catalog_bicycle.html">
-                          Велосипеды
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="balls.html">
-                          Мячи
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="sneakers.html">
-                          Кроссовки
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="trainer.html">
-                          Тренажеры
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="sports_equipment.html">
-                          Спортивный инвентарь
-                        </a>
-                      </li>
+                      {% for category in catalog %}
+                        <li class="nav-item">
+                          <a class="nav-link p-0 pt-2" href="{% url "goods:category" category.slug %}">{{ category.name }}</a>
+                        </li>
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -121,17 +93,24 @@
                         </div>
                       </div>
                       {% endfor %}
+
                       <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                          <li class="page-item disabled">
-                            <a class="page-link">Назад</a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">Далее</a>
-                          </li>
+                            <li class="page-item {% if not catalog_cart_action.has_previous %}disabled{% endif %}">
+                                <a class="page-link" href="{% if catalog_cart_action.has_previous %}{% url "action:action" catalog_cart_action.previous_page_number %}{% else %}#{% endif %}">Назад</a>
+                            </li>
+                    
+                            {% for page in catalog_cart_action.paginator.page_range %}
+                            <li class="page-item {% if catalog_cart_action.number == page %}active{% endif %}">
+                              <a class="page-link" href="{% url "action:action" page %}">{{ page }}</a>
+                            </li>
+                            {% endfor %}
+                    
+                            <li class="page-item {% if not catalog_cart_action.has_next %}disabled{% endif %}">
+                                <a class="page-link" href="{% if catalog_cart_action.has_next %}{% url "action:action" catalog_cart_action.next_page_number %}{% else %}#{% endif %}">Далее</a>
+                            </li>
                         </ul>
-                      </nav>
+                    </nav>
                       
                     </div>
                   </div>

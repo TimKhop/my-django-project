@@ -48,40 +48,11 @@
                   <h4>Каталог</h4>
                   <div class="content-left-catalog">
                     <ul>
-                      <li>
-                        <a href="catalog_bicycle.html">
-                          Велосипеды
-                        </a>
+                      {% for category in catalog %}
+                      <li class="nav-item">
+                          <a class="nav-link p-0 pt-2" href="{% url "goods:category" category.slug %}">{{ category.name }}</a>
                       </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="balls.html">
-                          Мячи
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="sneakers.html">
-                          Кроссовки
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="trainer.html">
-                          Тренажеры
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="sports_equipment.html">
-                          Спортивный инвентарь
-                        </a>
-                      </li>
-                    </ul>
+                      {% endfor %}
                   </div>
                 </div>
               </div>

@@ -11,13 +11,15 @@
           <div class="container-fluid mt-4">
             <div class="row">
               <div class="col-lg-2">
+                <div class="name_category">
+                  <h3>{{ category.name }}</h3>
+                </div>
                 <div class="container-fluid mt-5">
                   <div class="dropdown mb-4">
                     <button class="btn btn-secondary dropdown-toggle btn-light" type="button"
                       data-bs-toggle="dropdown" aria-expanded="false">
                       Фильтр
                     </button>
-
                     <form action="" method="get" class="dropdown-menu bg-white" data-bs-theme="white">
                       <div class="form-check text-dark mx-3">
                         <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault"
@@ -53,41 +55,15 @@
                     </form>
                   </div>
                   <div class="content-left-catalog">
-                    <ul>
-                      <li>
-                        <a href="catalog_bicycle.html">
-                          Велосипеды
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="balls.html">
-                          Мячи
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="sneakers.html">
-                          Кроссовки
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="trainer.html">
-                          Тренажеры
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="sports_equipment.html">
-                          Спортивный инвентарь
-                        </a>
-                      </li>
-                    </ul>
+                    <div class="nav-bar-bottom">
+                      <ul class="nav justify-content-between mt-2">
+                          {% for category in catalog %}
+                          <li class="nav-item">
+                              <a class="nav-link p-0 pt-2" href="{% url "goods:category" category.slug %}">{{ category.name }}</a>
+                          </li>
+                          {% endfor %}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -110,6 +86,7 @@
                                         {% elif product.new == 'Да' %}
                                         <span class="badge bg-info text-dark new">Новинка</span>
                                         {% endif %}
+                                        <span class="badge"> </span>
                                         <a href="{% url 'catalog:product' product.slug %}">
                                             <h5 class="card-title">{{ product.name }}</h5>
                                         </a>

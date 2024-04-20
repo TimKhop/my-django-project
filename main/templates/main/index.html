@@ -8,7 +8,6 @@
       <div class="container-fluid mt-4">
         <div class="row">
           <div class="col-lg-1 col-md-12">
-
           </div>
 
           <div class="col-lg-10 col-md-12">
@@ -24,17 +23,24 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <a href="new_goods.html"><img src="{% static "deps/images/newCollection.jpg" %}" class="d-block w-100"
+                    <a href="{% url 'goods:new_goods' %}"><img src="{% static "deps/images/newCollection.jpg" %}" class="d-block w-100"
                         alt="..."></a>
                   </div>
-                  <div class="carousel-item">
-                    <a href="balls.html"><img src="{% static "deps/images/Мячи_реклама_3.jpg" %}" class="d-block w-100"
-                        alt="..."></a>
-                  </div>
-                  <div class="carousel-item">
-                    <a href="sneakers.html"><img src="{% static "deps/images/Кроссовки_реклама_2.jpg" %}" class="d-block w-100"
-                        alt="..."></a>
-                  </div>
+                  {% for category in catalog %}
+                    {% if category.slug == 'balls' %}
+                        <div class="carousel-item">
+                            <a href="{% url 'goods:category' category.slug %}">
+                                <img src="{% static "deps/images/Мячи_реклама_3.jpg" %}" class="d-block w-100" alt="...">
+                            </a>
+                        </div>
+                    {% elif category.slug == 'krossovki' %}
+                        <div class="carousel-item">
+                            <a href="{% url 'goods:category' category.slug %}">
+                                <img src="{% static "deps/images/Кроссовки_реклама_2.jpg" %}" class="d-block w-100" alt="...">
+                            </a>
+                        </div>
+                    {% endif %}
+                  {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                   data-bs-slide="prev">
@@ -73,40 +79,38 @@
               </div>
               <div class="col-lg-10 col-md-12">
                 <div class="row">
-                  <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="card custom-shadow">
-                      <a href="card_good.html"><img src="{% static "deps/images/Горный велосипед_1.jpeg" %}" class="card-img-top"
-                          alt="..."></a>
-                      <div class="card-body">
-                        <span class="badge bg-warning text-dark">Скидка 10%</span>
-                        <a href="card_good.html">
-                          <h5 class="card-title">Горный велосипед 707W</h5>
-                        </a>
-                        <a href="card_good.html">
-                          <div class="text-truncate-container">
-                            <p class="card-text">Исследуйте дикую природу с нашим горным велосипедом 707W,
-                              созданным
-                              для приключений на самых сложных трассах. Оснащенный прочной рамой и надежными
-                              компонентами, этот велосипед обеспечит вам уверенное сцепление с поверхностью и
-                              маневренность в каждом повороте. Выберите свой путь и отправляйтесь в путешествие с
-                              велосипедом, который готов преодолевать любые препятствия.</p>
+                  {% for cart in action %}
+                      <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="card custom-shadow">
+                          <a href="{% url "catalog:product" cart.slug %}"><img src="{{ cart.image.url }}"
+                              class="card-img-top" alt="{{ cart.name }}"></a>
+                          <div class="card-body">
+                            <span class="badge bg-warning text-dark">Скидка {{ cart.discount }}%</span>
+                            <a href="{% url "catalog:product" cart.slug %}">
+                              <h5 class="card-title">{{ cart.name }}</h5>
+                            </a>
+                            <a href="{% url "catalog:product" cart.slug %}">
+                              <div class="text-truncate-container">
+                                <p class="card-text">{{ cart.description }}</p>
+                              </div>
+                            </a>
                           </div>
-                        </a>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">id: {{cart.display_id }}</li>
+                          </ul>
+                          <div class="d-flex justify-content-between">
+                            <p><s>{{ cart.price }}₽</s></p>
+                            <p><strong>{{ cart.sell_price }}₽</strong>
+                            </p>
+                            <a href="#" class="btn">
+                              <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32"
+                                height="32">
+                            </a>
+                          </div>
+                        </div>
                       </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">id: 10001</li>
-                      </ul>
-                      <div class="d-flex justify-content-between">
-                        <p><s>45990₽</s></p>
-                        <p><strong>41390₽</strong>
-                        </p>
-                        <a href="#" class="btn">
-                          <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32" height="32">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 mt-4">
+                      {% endfor %}
+                  {% comment %} <div class="col-lg-4 col-md-6 mt-4">
                     <div class="card custom-shadow">
                       <a href="#"><img src="{% static "deps/images/Тренажер_2_2.jpeg" %}" class="card-img-top" alt="..."></a>
                       <div class="card-body">
@@ -171,7 +175,7 @@
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </div> {% endcomment %}
                 </div>
               </div>
             </div>

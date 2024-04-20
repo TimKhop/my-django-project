@@ -191,3 +191,7 @@ header {
 .nav-link-footer a:hover{
     color: #cacaca;
 }
+
+.name_catalog_left {
+    list-style: none;
+  }
