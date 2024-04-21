@@ -9,6 +9,12 @@
       <div class="col-lg-10">
         <div class="container-content">
           <div class="container-fluid mt-4">
+            {% if request.GET.q %}
+            <h3 class="mt-4">Результаты поиска по запросу {{ request.GET.q }}</h3>
+            {% if not products %}
+              <h2 class="mt-4">По запросу ничего не найдено</h2>
+            {% endif %}
+            {% endif %}
             <div class="row">
               <div class="col-lg-2">
                 <div class="name_category">
@@ -22,7 +28,7 @@
                       data-bs-toggle="dropdown" aria-expanded="false">
                       Фильтр
                     </button>
-                    <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "goods:category" category_slug=category.slug %}{% endif %}" method="get" class="dropdown-menu bg-white" data-bs-theme="white">
+                    <form action="{% if request.GET.q %}{% url "goods:search" %}{% else %}{% url "goods:category" category_slug=category.slug %}{% endif %}" method="get" class="dropdown-menu bg-white" data-bs-theme="white">
                       <div class="form-check text-dark mx-3">
                         <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault"
                           value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
@@ -114,7 +120,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                      
+                      {% if products %}
                       <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                           <li class="page-item disabled">
@@ -126,6 +132,7 @@
                           </li>
                         </ul>
                       </nav>
+                      {% endif %}
 
                     </div>
                   </div>
