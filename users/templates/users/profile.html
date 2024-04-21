@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1 col-md-12">
+        </div>
+        <div class="col-lg-10 col-md-12">
+            <div class="nav-bar-bottom-profile">
+                <ul class="nav mt-2 info-profile">
+                    <li class="nav-item">
+                        <a class="nav-link action" href="{% url "user:profile" %}">Мой профиль</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link action" href="#">Админ панель</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="row justify-content-center">
+                            <h2 class="mb-4 mt-4">Личные данные</h2>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-9 mb-3">
+                                        <label for="firstName" class="form-label">Имя*</label>
+                                        <input type="text" class="form-control" id="firstName"
+                                            placeholder="Введите ваше имя" required>
+                                    </div>
+                                    <div class="col-md-9 mb-3">
+                                        <label for="lastName" class="form-label">Фамилия*</label>
+                                        <input type="text" class="form-control" id="lastName"
+                                            placeholder="Введите вашу фамилию" required>
+                                    </div>
+                                    <div class="col-md-9 mb-3">
+                                        <label for="username" class="form-label">Имя пользователя*</label>
+                                        <input type="text" class="form-control" id="firstName"
+                                            placeholder="Введите ваше имя пользователя" required>
+                                    </div>
+                                    <div class="col-md-9 mb-3">
+                                        <label for="email" class="form-label">Email*</label>
+                                        <input type="email" class="form-control" id="email"
+                                            placeholder="Введите ваш email" required>
+                                    </div>
+                                </div>
+                                <div class="container-fluid btn-position btn-regstration">
+                                    <div class="btn-row">
+                                        <div class="col-lg-2">
+                                            <button type="button"
+                                                class="btn btn-primary mt-2 mb-2">Сохранить</button>
+                                            <button type="button"
+                                                class="btn btn-danger mt-2 mb-2">Выйти</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-lg-5 col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 mt-4">
+                        {% comment %} <div class="row justify-content-center">
+                            <div class="col-lg-12 mb-4 text-center">
+                                <h2>Корзина</h2>
+                            </div>
+                            <div class="card content-shop-cat mt-4">
+                                <div class="name-good bg-body-tertiary">
+                                    <h4>Товар</h4>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="row text-center">
+                                            <div class="col p-0">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-primary">-</button>
+                                                    </span>
+                                                    <input type="text" class="form-control number" value="1">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-primary">+</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col p-0">
+                                                <p>x 42990 =</p>
+                                            </div>
+                                            <div class="col p-0">
+                                                <p>42990₽</p>
+                                            </div>
+                                            <div class="col p-0">
+                                                <a href="#" class="remove-from-cart"><img
+                                                        src="static/images/trash.svg" alt="" width="22"
+                                                        height="22"></a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <p class="float-left">
+                                        Итого
+                                        <strong>1</strong>
+                                        товар(а/ов) на сумму:
+                                    </p>
+                                    <h5 class="float-left">
+                                        <strong>42990₽</strong>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="container-fluid btn-position">
+                                <div class="btn-row">
+                                    <div class="col-lg-4">
+                                        <a href="order.html">
+                                            <button type="button" class="btn btn-warning mt-4 mb-4">Оформить
+                                                заказ</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-8"></div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-12">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-lg-1 col-md-12">
+            </div>
+            <div class="col-lg-10 col-md-12">
+                <div class="col-lg-12 mb-4 text-center">
+                    <h2>Мои заказы</h2>
+                </div>
+                <div class="card content-shop-cat mt-4">
+                    <div class="accordion accordion-group-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <div class="name-good bg-body-tertiary">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                        aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Заказ №1 - 11 апреля 2024 11:12 | Статус:
+                                        <strong class="mx-2">В обработке</strong>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Товар</th>
+                                                    <th scope="col">Количество</th>
+                                                    <th scope="col">Цена</th>
+                                                    <th scope="col">Общая стоимость</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Горный велосипед 707W</td>
+                                                    <td>1</td>
+                                                    <td>41390 ₽</td>
+                                                    <td>41390 ₽</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="p-0 m-0"><strong>Итого</strong></p>
+                                        <p class="p-0 m-0"><strong>41390 ₽</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    Заказ №2 - 11 апреля 2024 11:41 | Статус:
+                                    <strong class="mx-2">Получен</strong>
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Товар</th>
+                                                    <th scope="col">Количество</th>
+                                                    <th scope="col">Цена</th>
+                                                    <th scope="col">Общая стоимость</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Мяч для тенниса</td>
+                                                    <td>2</td>
+                                                    <td>410 ₽</td>
+                                                    <td>820 ₽</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="p-0 m-0"><strong>Итого</strong></p>
+                                        <p class="p-0 m-0"><strong>820 ₽</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-12">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
