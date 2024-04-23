@@ -35,11 +35,13 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url "catalog:catalog" %}">Каталог</a>
                   </li>
+                  {% if not user.is_authenticated %}
                   <li class="nav-item">
                     <a class="nav-link" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                       <img src="{% static "deps/images/login in.svg" %}" alt="" width="26" height="26">
                     </a>
                   </li>
+                  {% else %}
                   <li class="nav-item">
                     <a class="nav-link" href="{% url "user:profile" %}"><img src="{% static "deps/images/profile.svg" %}" alt="" width="26"
                         height="26"></a>
@@ -48,6 +50,7 @@
                     <a class="nav-link" href="shopping_cat.html"><img src="{% static "deps/images/shopping cart.svg" %}" alt=""
                         width="24" height="24"></a>
                   </li>
+                  {% endif %}
                 </ul>
                 <form class="d-flex" role="search" action="{% url "goods:search" %}" method="get">
                   <input class="form-control me-2" type="search" placeholder="Поиск" name="q" aria-label="Search">
@@ -89,9 +92,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
           </div>
           <div class="modal-body">
-            <form form action="{% url "user:login" %}" method="post">
+            <form action="{% url "user:login" %}" method="post">
               {% csrf_token %}
-
               <div class="row">
                 <div class="col-md-12 mb-3">
                   <label for="id_username" class="form-label">Имя пользователя*</label>
@@ -116,11 +118,11 @@
                   </div>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal">Регистрация</button>
+              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
-              data-bs-toggle="modal">Регистрация</button>
           </div>
         </div>
       </div>
@@ -134,47 +136,89 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form action="{% url "user:registration" %}" method="post">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="firstName" class="form-label">Имя*</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="Введите ваше имя" required>
+                  <label for="id_first_name" class="form-label">Имя*</label>
+                  <input type="text" class="form-control" id="id_first_name" 
+                  value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}" 
+                  name="first_name" 
+                  placeholder="Введите ваше имя" 
+                  required>
+                  {% comment %} {% if form.first_name.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                  {% endif %} {% endcomment %}
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="lastName" class="form-label">Фамилия*</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="Введите вашу фамилию" required>
+                  <label for="id_last_name" class="form-label">Фамилия*</label>
+                  <input type="text" class="form-control" id="id_last_name" 
+                  value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}" 
+                  name="last_name"
+                  placeholder="Введите вашу фамилию" 
+                  required>
+                  {% comment %} {% if form.last_name.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                  {% endif %} {% endcomment %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="username" class="form-label">Имя пользователя*</label>
-                  <input type="text" class="form-control" id="username" placeholder="Введите ваше имя пользователя"
-                    required>
+                  <input type="text" class="form-control" id="username" 
+                  value="{% if form.username.value %}{{ form.username.value }}{% endif %}" 
+                  name="username"
+                  placeholder="Введите ваше имя пользователя"
+                  required>
+                  {% comment %} {% if form.username.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                  {% endif %} {% endcomment %}
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="email" class="form-label">Email*</label>
-                  <input type="email" class="form-control" id="email" placeholder="Введите ваш email" required>
+                  <label for="id_email" class="form-label">Email*</label>
+                  <input type="email" class="form-control" id="id_email"
+                  value="{% if form.email.value %}{{ form.email.value }}{% endif %}" 
+                  name="email" 
+                  placeholder="Введите ваш email" 
+                  required>
+                  {% comment %} {% if form.email.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                  {% endif %} {% endcomment %}
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="password1" class="form-label">Пароль*</label>
-                  <input type="password" class="form-control" id="password1" placeholder="Введите пароль" required>
+                  <label for="id_password1" class="form-label">Пароль*</label>
+                  <input type="password" class="form-control" id="id_password1"
+                  value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}" 
+                  name="password1"  
+                  placeholder="Введите пароль" 
+                  required>
+                  {% comment %} {% if form.password1.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.password1.errors}}</div>
+                  {% endif %} {% endcomment %}
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="password2" class="form-label">Подтверждение пароля*</label>
-                  <input type="password" class="form-control" id="password2" placeholder="Подтвердите пароль" required>
+                  <label for="id_password2" class="form-label">Подтверждение пароля*</label>
+                  <input type="password" class="form-control" id="id_password2"
+                  value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}" 
+                  name="password2"  
+                  placeholder="Подтвердите пароль" 
+                  required>
+                  {% comment %} {% if form.password2.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
+                  {% endif %} {% endcomment %}
                 </div>
               </div>
               <div class="container-fluid btn-position btn-regstration">
                 <div class="btn-row">
                   <div class="col-lg-2">
-                    <button type="button" class="btn btn-primary mt-4 mb-4">Зарегистрироваться</button>
+                    <button type="submit" class="btn btn-primary mt-4 mb-4">Зарегистрироваться</button>
                   </div>
                   <div class="col-lg-10"></div>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button class="btn btn-warning" data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal">Авторизация</button>
+              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-warning" data-bs-target="#exampleModalToggle"
-              data-bs-toggle="modal">Авторизация</button>
           </div>
         </div>
       </div>

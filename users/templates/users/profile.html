@@ -13,8 +13,13 @@
                         <a class="nav-link action" href="{% url "user:profile" %}">Мой профиль</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link action" href="#">Мои заказы</a>
+                    </li>
+                    {% if user.is_admin %} 
+                    <li class="nav-item">
                         <a class="nav-link action" href="#">Админ панель</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="container-fluid">
@@ -48,10 +53,12 @@
                                 <div class="container-fluid btn-position btn-regstration">
                                     <div class="btn-row">
                                         <div class="col-lg-2">
-                                            <button type="button"
-                                                class="btn btn-primary mt-2 mb-2">Сохранить</button>
-                                            <button type="button"
-                                                class="btn btn-danger mt-2 mb-2">Выйти</button>
+                                            <a type="button"
+                                                class="btn btn-primary mt-2 mb-2">Сохранить</a>
+                                            {% if user.is_authenticated or user.is_staff %}
+                                            <a type="submit"
+                                                class="btn btn-danger mt-2 mb-2" href="{% url "user:logout" %}">Выйти</a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
