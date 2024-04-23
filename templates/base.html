@@ -146,9 +146,9 @@
                   name="first_name" 
                   placeholder="Введите ваше имя" 
                   required>
-                  {% comment %} {% if form.first_name.errors %}
+                  {% if form.first_name.errors %}
                   <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
-                  {% endif %} {% endcomment %}
+                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="id_last_name" class="form-label">Фамилия*</label>
@@ -157,9 +157,9 @@
                   name="last_name"
                   placeholder="Введите вашу фамилию" 
                   required>
-                  {% comment %} {% if form.last_name.errors %}
+                  {% if form.last_name.errors %}
                   <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
-                  {% endif %} {% endcomment %}
+                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="username" class="form-label">Имя пользователя*</label>
@@ -168,9 +168,9 @@
                   name="username"
                   placeholder="Введите ваше имя пользователя"
                   required>
-                  {% comment %} {% if form.username.errors %}
+                  {% if form.username.errors %}
                   <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
-                  {% endif %} {% endcomment %}
+                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="id_email" class="form-label">Email*</label>
@@ -179,9 +179,9 @@
                   name="email" 
                   placeholder="Введите ваш email" 
                   required>
-                  {% comment %} {% if form.email.errors %}
+                  {% if form.email.errors %}
                   <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
-                  {% endif %} {% endcomment %}
+                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="id_password1" class="form-label">Пароль*</label>
@@ -190,9 +190,9 @@
                   name="password1"  
                   placeholder="Введите пароль" 
                   required>
-                  {% comment %} {% if form.password1.errors %}
+                  {% if form.password1.errors %}
                   <div class="alert alert-danger alert-dismissible fade show">{{form.password1.errors}}</div>
-                  {% endif %} {% endcomment %}
+                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="id_password2" class="form-label">Подтверждение пароля*</label>
@@ -201,9 +201,9 @@
                   name="password2"  
                   placeholder="Подтвердите пароль" 
                   required>
-                  {% comment %} {% if form.password2.errors %}
+                  {% if form.password2.errors %}
                   <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
-                  {% endif %} {% endcomment %}
+                  {% endif %}
                 </div>
               </div>
               <div class="container-fluid btn-position btn-regstration">
@@ -316,6 +316,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+    <script src="{% static "deps/js/jquery/jquery-3.7.0.min.js" %}"></script>
+    <script src="{% static "deps/js/jquery-ajax.js" %}"></script>
+    <script src="{% static "deps/js/jquery-events.js" %}"></script>
 
 </body>
 

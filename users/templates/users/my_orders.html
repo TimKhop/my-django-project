@@ -106,14 +106,16 @@
             <div class="nav-bar-bottom-profile">
                 <ul class="nav mt-2 info-profile">
                     <li class="nav-item">
-                        <a class="nav-link action" href="profile.html">Мой профиль</a>
+                        <a class="nav-link action" href="{% url "user:profile" %}">Мой профиль</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link action" href="profile.html">Админ панель</a>
+                        <a class="nav-link action" href="{% url "user:my_orders" %}">Мои заказы</a>
                     </li>
+                    {% if user.is_authenticated and user.is_superuser %} 
                     <li class="nav-item">
-                        <a class="nav-link action" href="my_orders.html">Мои заказы</a>
+                        <a class="nav-link action" href="{% url "admin:index" %}">Админ панель</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-lg-1 col-md-12">
