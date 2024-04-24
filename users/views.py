@@ -1,4 +1,3 @@
-from email import message
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -48,7 +47,7 @@ def profile(request):
         form = ProfileForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Профиль успешно обновлен")
+            messages.success(request, f" Профиль успешно обновлен ")
             return HttpResponseRedirect(reverse('user:profile'))
         else:
             # Возвращаем страницу, которая содержит модальное окно, с контекстом, чтобы показать ошибки
@@ -60,7 +59,7 @@ def profile(request):
 
     context = {
         "title": "Спорт Лайн - Профиль", 
-        'form': form,
+        'form': form
     }
     return render(request, 'users/profile.html', context)  # Шаблон, который содержит модальное окно
 
@@ -75,4 +74,10 @@ def my_orders(request):
         "title": "Спорт Лайн - Мои заказы", 
         }
     return render(request, "users/my_orders.html", context)
+
+def users_cart(request):
+    context = {
+        "title": "Спорт Лайн - Корзина", 
+        }
+    return render(request, "users/users_cart.html", context)
     

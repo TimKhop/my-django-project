@@ -12,7 +12,7 @@
 
           <div class="col-lg-10 col-md-12">
             <div class="row">
-              <div id="carouselExampleIndicators" class="carousel slide">
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -68,7 +68,7 @@
           </div>
           <div class="col-lg-10 col-md-12">
             <div class="action-text">
-              <h2><a href="action.html">Акции</a></h2>
+              <h2><a href="{% url 'goods:action' %}">Акции</a></h2>
             </div>
           </div>
           <div class="col-lg-1 col-md-12">
@@ -193,7 +193,7 @@
           </div>
           <div class="col-lg-10 col-md-12">
             <div class="action-text">
-              <h2><a href="new_goods.html">Новинки</a></h2>
+              <h2><a href="{% url 'goods:new_goods' %}">Новинки</a></h2>
             </div>
           </div>
           <div class="col-lg-1 col-md-12">
@@ -204,34 +204,30 @@
               </div>
               <div class="col-lg-10 col-md-12">
                 <div class="row">
+                  {% for cart in new_goods %}
                   <div class="col-lg-4 col-md-6 mt-4">
                     <div class="card custom-shadow">
-                      <a href="#"><img src="{% static "deps/images/Насос_4_3.jpeg" %}" class="card-img-top" alt="..."></a>
+                      <a href="{% url "catalog:product" cart.slug %}"><img src="{{ cart.image.url }}" class="card-img-top" alt="{{ cart.name }}"></a>
                       <div class="new">
                         <div class="card-body">
                           <span class="badge bg-warning text-dark">Новинка</span>
-                          <a href="#">
-                            <h5 class="card-title">Насос для мячей</h5>
+                          <a href="{% url "catalog:product" cart.slug %}">
+                            <h5 class="card-title">{{ cart.name }}</h5>
                           </a>
-                          <a href="#">
+                          <a href="{% url "catalog:product" cart.slug %}">
                             <div class="text-truncate-container">
                               <p class="card-text">
-                                Погрузитесь в мир игры с нашим универсальным насосом для мячей! Этот компактный и
-                                эффективный насос предназначен для накачивания различных видов мячей - футбольных,
-                                баскетбольных, волейбольных и многих других. Благодаря своей прочной конструкции и
-                                удобному дизайну, вы сможете быстро и легко накачать свой мяч, готовый к игре в
-                                любое время. Добавьте наш насос для мячей в свою спортивную арсеналь, и вы всегда
-                                будете готовы к игре.
+                                {{ cart.description }}
                               </p>
                             </div>
                           </a>
                         </div>
                       </div>
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item">id: 50004</li>
+                        <li class="list-group-item">id: {{cart.display_id }}</li>
                       </ul>
                       <div class="d-flex justify-content-between">
-                        <p><strong>590₽</strong>
+                        <p><strong>{{ cart.price }}₽</strong>
                         </p>
                         <!-- <p><strong>41390₽</strong></p> -->
                         <a href="#" class="btn">
@@ -240,7 +236,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-4 col-md-6 mt-4">
+                  {% endfor %}
+                  {% comment %} <div class="col-lg-4 col-md-6 mt-4">
                     <div class="card custom-shadow">
                       <a href="#"><img src="{% static "deps/images/Горный_велосипед_6_6.jpeg" %}" class="card-img-top" alt="..."></a>
                       <div class="new">
@@ -306,7 +303,7 @@
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </div> {% endcomment %}
                 </div>
                 <div class="col-lg-1">
                 </div>
