@@ -18,7 +18,6 @@
                       data-bs-toggle="dropdown" aria-expanded="false">
                       Фильтр
                     </button>
-
                     <form action="" method="get" class="dropdown-menu bg-white" data-bs-theme="white">
                       <div class="form-check text-dark mx-3">
                         <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault"
@@ -97,45 +96,45 @@
                   <div class="col-lg-12 col-md-12">
                     <div class="row">
 
-                      {% for cart in catalog_cart_bicycle %}
+                      {% for product in catalog_cart_bicycle %}
                       <div class="col-lg-4 col-md-6 mt-4">
                         <div class="card custom-shadow">
-                          <a href="{% url "catalog:product" cart.slug %}"><img src="{{ cart.image.url }}"
-                              class="card-img-top" alt="{{ cart.name }}"></a>
+                          <a href="{% url "catalog:product" product.slug %}"><img src="{{ product.image.url }}"
+                              class="card-img-top" alt="{{ product.name }}"></a>
                           <div class="card-body">
 
-                            {% if cart.discount %}
-                              <span class="badge bg-warning text-dark">Скидка {{ cart.discount }}%</span>
+                            {% if product.discount %}
+                              <span class="badge bg-warning text-dark">Скидка {{ product.discount }}%</span>
                             {% else %}
 
-                              {% if cart.new == 'Да' %}
+                              {% if product.new == 'Да' %}
                                 <span class="badge bg-info text-dark new">Новинка</span>
                               {% endif %}
 
                               <span class="badge"> </span>
                             {% endif %}
 
-                            <a href="{% url "catalog:product" cart.slug %}">
-                              <h5 class="card-title">{{ cart.name }}</h5>
+                            <a href="{% url "catalog:product" product.slug %}">
+                              <h5 class="card-title">{{ product.name }}</h5>
                             </a>
-                            <a href="{% url "catalog:product" cart.slug %}">
+                            <a href="{% url "catalog:product" product.slug %}">
                               <div class="text-truncate-container">
-                                <p class="card-text">{{ cart.description }}</p>
+                                <p class="card-text">{{ product.description }}</p>
                               </div>
                             </a>
                           </div>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">id: {{cart.display_id }}</li>
+                            <li class="list-group-item">id: {{ product.display_id }}</li>
                           </ul>
                           <div class="d-flex justify-content-between">
-                            {% if cart.discount %}
-                              <p><strong>{{ cart.price }}₽</strong>
+                            {% if product.discount %}
+                              <p><strong>{{ product.price }}₽</strong>
                               </p>
-                              <p><s>{{ cart.sell_price }}₽</s></p>
+                              <p><s>{{ product.sell_price }}₽</s></p>
                             {% else %}
-                              <p><strong>{{ cart.price }}₽</strong></p>
+                              <p><strong>{{ product.price }}₽</strong></p>
                             {% endif %}
-                            <a href="#" class="btn">
+                            <a href="{% url "cart:cart_add" product.slug %}" class="btn">
                               <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32"
                                 height="32">
                             </a>

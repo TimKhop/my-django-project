@@ -110,7 +110,7 @@
                                         {% else %}
                                         <p><strong>{{ product.price }}₽</strong></p>
                                         {% endif %}
-                                        <a href="#" class="btn">
+                                        <a href="{% url "cart:cart_add" product.slug %}" class="btn">
                                             <img class="mx-1" src="{% static 'deps/images/basket.svg' %}" alt="Catalog Icon" width="32"
                                                 height="32">
                                         </a>

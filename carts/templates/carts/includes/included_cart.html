@@ -1,8 +1,13 @@
 {% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
 
 <div class="card content-shop-cat mt-4">
+    {% for cart in carts %}
     <div class="name-good bg-body-tertiary">
-        <h4>Товар</h4>
+        <h4>{{ cart.product.name }}</h4>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -12,17 +17,17 @@
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary">-</button>
                         </span>
-                        <input type="text" class="form-control number" value="1">
+                        <input type="text" class="form-control number" value="{{ cart.quantity }}">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary">+</button>
                         </span>
                     </div>
                 </div>
                 <div class="col p-0">
-                    <p>x 42990 =</p>
+                    <p>x {{ cart.product.sell_price }} =</p>
                 </div>
                 <div class="col p-0">
-                    <p>42990₽</p>
+                    <p>{{ cart.product_price }}₽</p>
                 </div>
                 <div class="col p-0">
                     <a href="{% url "cart:cart_remove" 1 %}" class="remove-from-cart"><img src="{% static "deps/images/trash.svg" %}"
@@ -32,16 +37,17 @@
         </li>
 
     </ul>
+    {% endfor %}
 </div>
 <div class="card mt-4">
     <div class="card-body">
         <p class="float-left">
             Итого
-            <strong>1</strong>
+            <strong>{{ carts.total_quantity }}</strong>
             товар(а/ов) на сумму:
         </p>
         <h5 class="float-left">
-            <strong>42990₽</strong>
+            <strong>{{ carts.total_price }}₽</strong>
         </h5>
     </div>
 </div>

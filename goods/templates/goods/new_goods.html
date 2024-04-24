@@ -55,32 +55,32 @@
                   <div class="col-lg-12 col-md-12">
                     <div class="row">
 
-                      {% for cart in catalog_cart_new_goods %}
+                      {% for product in catalog_cart_new_goods %}
                       <div class="col-lg-4 col-md-6 mt-4">
                         <div class="card custom-shadow">
-                          <a href="{% url "catalog:product" cart.slug %}"><img src="{{ cart.image.url }}" class="card-img-top"
-                              alt="{{ cart.image }}"></a>
+                          <a href="{% url "catalog:product" product.slug %}"><img src="{{ product.image.url }}" class="card-img-top"
+                              alt="{{ product.image }}"></a>
                           <div class="new">
                             <div class="card-body">
                               <span class="badge bg-warning text-dark">Новинка</span>
-                              <a href="{% url "catalog:product" cart.slug %}">
-                                <h5 class="card-title">{{ cart.name }}</h5>
+                              <a href="{% url "catalog:product" product.slug %}">
+                                <h5 class="card-title">{{ product.name }}</h5>
                               </a>
-                              <a href="{% url "catalog:product" cart.slug %}">
+                              <a href="{% url "catalog:product" product.slug %}">
                                 <div class="text-truncate-container">
-                                  <p class="card-text">{{ cart.description }}</p>
+                                  <p class="card-text">{{ product.description }}</p>
                                 </div>
                               </a>
                             </div>
                           </div>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">id: {{cart.display_id }} </li>
+                            <li class="list-group-item">id: {{ product.display_id }} </li>
                           </ul>
                           <div class="d-flex justify-content-between">
-                            <p><strong>{{ cart.price }}₽</strong>
+                            <p><strong>{{ product.price }}₽</strong>
                             </p>
                             <!-- <p><strong>41390₽</strong></p> -->
-                            <a href="#" class="btn">
+                            <a href="{% url "cart:cart_add" product.slug %}" class="btn">
                               <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32"
                                 height="32">
                             </a>
