@@ -15,9 +15,11 @@
                     {% include "carts/includes/included_cart.html" %}
                     <div class="container-fluid btn-position">
                         <div class="btn-row">
+                            {% if carts %}               
                             <div class="col-lg-2">
-                                <a href="order.html"><button type="button" class="btn btn-warning mt-4 mb-4">Оформить заказ</button></a>
+                                <a href="order.html"><button type="button" class="btn btn-warning mb-4">Оформить заказ</button></a>
                             </div>
+                            {% endif %}
                             <div class="col-lg-10"></div>
                         </div>
                     </div>

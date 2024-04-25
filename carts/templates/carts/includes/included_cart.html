@@ -30,7 +30,7 @@
                     <p>{{ cart.product_price }}₽</p>
                 </div>
                 <div class="col p-0">
-                    <a href="{% url "cart:cart_remove" 1 %}" class="remove-from-cart"><img src="{% static "deps/images/trash.svg" %}"
+                    <a href="{% url "cart:cart_remove" cart.id %}" class="remove-from-cart"><img src="{% static "deps/images/trash.svg" %}"
                             alt="" width="22" height="22"></a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
     </ul>
     {% endfor %}
 </div>
-<div class="card mt-4">
+<div class="card mt-4 mb-4">
     <div class="card-body">
         <p class="float-left">
             Итого
