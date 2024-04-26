@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 
 from carts.models import Cart
