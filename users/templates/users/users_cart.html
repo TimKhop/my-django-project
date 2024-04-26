@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load carts_tags %}
+{% user_carts request as carts %}
+
 
 {% block content %}
 <div class="container-fluid">
@@ -11,10 +14,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Корзина</h3>
-                    </div>
-                    <!-- Разметка корзины -->
-                    {% include "carts/includes/included_cart.html" %}
-                    <!-- Закончилась разметка корзины -->
+                        <div class="container" id="cart-items-container">
+                            <!-- Разметка корзины -->
+                            {% include "carts/includes/included_cart.html" %}
+                            <!-- Закончилась разметка корзины -->
+                        </div>
                     <div class="container-fluid btn-position">
                         <div class="btn-row">
                             {% if carts %}               

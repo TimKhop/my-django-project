@@ -3,7 +3,7 @@
 {% user_carts request as carts %}
 
 
-<div class="card content-shop-cat mt-4" id="cart-pag">
+<div class="card content-shop-cat mt-4">
     {% for cart in carts %}
     <div class="name-good bg-body-tertiary">
         <h4>{{ cart.product.name }}</h4>
@@ -38,14 +38,13 @@
                 </div>
                 <div class="col p-0">
                     <a href="{% url "cart:cart_remove" %}" class="remove-from-cart"
-                    data-cart-ud="{{ cart.id }}">
+                    data-cart-id="{{ cart.id }}">
                     {% csrf_token %}
                     <img src="{% static "deps/images/trash.svg" %}"
                             alt="" width="22" height="22"></a>
                 </div>
             </div>
         </li>
-
     </ul>
     {% endfor %}
 </div>
