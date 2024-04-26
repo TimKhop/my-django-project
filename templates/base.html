@@ -44,6 +44,12 @@
                       <img src="{% static "deps/images/login in.svg" %}" alt="" width="26" height="26">
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url "user:users_cart" %}"><img src="{% static "deps/images/shopping cart.svg" %}" alt=""
+                        width="24" height="24">
+                        <span id="goods-in-cart-count" style="font-size: 18px;">{{ carts.total_quantity }}</span>
+                    </a>
+                  </li>
                   {% else %}
                   <li class="nav-item">
                     <a class="nav-link" href="{% url "user:profile" %}"><img src="{% static "deps/images/profile.svg" %}" alt="" width="26"
