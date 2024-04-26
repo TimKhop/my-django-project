@@ -52,7 +52,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url "user:users_cart" %}"><img src="{% static "deps/images/shopping cart.svg" %}" alt=""
                         width="24" height="24">
-                        <span class="goods-in-cart-count" style="font-size: 18px;">{{ carts.total_quantity }}</span>
+                        <span id="goods-in-cart-count" style="font-size: 18px;">{{ carts.total_quantity }}</span>
                     </a>
                   </li>
                   {% endif %}
@@ -323,7 +323,6 @@
     crossorigin="anonymous"></script>
     <script src="{% static "deps/js/jquery/jquery-3.7.0.min.js" %}"></script>
     <script src="{% static "deps/js/jquery-ajax.js" %}"></script>
-    <script src="{% static "deps/js/jquery-events.js" %}"></script>
 
 </body>
 

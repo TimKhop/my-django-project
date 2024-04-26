@@ -9,7 +9,7 @@ def index(request):
         'title': 'Спорт Лайн - Главная',
         'categories': categories,
         'action': action,
-        'new_goods': new_goods
+        'new_goods': new_goods,
     }
     return render(request, 'main/index.html', context)
 

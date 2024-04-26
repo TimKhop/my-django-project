@@ -4,7 +4,7 @@
 {% user_carts request as carts %}
 
 
-<div class="card content-shop-cat mt-4">
+<div class="card content-shop-cat mt-4" id="cart-pag">
     {% for cart in carts %}
     <div class="name-good bg-body-tertiary">
         <h4>{{ cart.product.name }}</h4>
@@ -15,11 +15,19 @@
                 <div class="col p-0">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary">-</button>
+                            <button type="button" class="btn btn-primary decrement"
+                            data-cart-id="{{ cart.id }}"
+                            data-cart-change-url="{% url "cart:cart_change" %}">
+                            {% csrf_token %}
+                            -</button>
                         </span>
                         <input type="text" class="form-control number" value="{{ cart.quantity }}">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary">+</button>
+                            <button type="button" class="btn btn-primary increment"
+                            data-cart-id="{{ cart.id }}"
+                            data-cart-change-url="{% url "cart:cart_change" %}">
+                            {% csrf_token %}
+                            +</button>
                         </span>
                     </div>
                 </div>
@@ -30,7 +38,10 @@
                     <p>{{ cart.product_price }}₽</p>
                 </div>
                 <div class="col p-0">
-                    <a href="{% url "cart:cart_remove" cart.id %}" class="remove-from-cart"><img src="{% static "deps/images/trash.svg" %}"
+                    <a href="{% url "cart:cart_remove" %}" class="remove-from-cart"
+                    data-cart-ud="{{ cart.id }}">
+                    {% csrf_token %}
+                    <img src="{% static "deps/images/trash.svg" %}"
                             alt="" width="22" height="22"></a>
                 </div>
             </div>

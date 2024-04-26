@@ -80,7 +80,9 @@
                             <p><strong>{{ product.price }}₽</strong>
                             </p>
                             <!-- <p><strong>41390₽</strong></p> -->
-                            <a href="{% url "cart:cart_add" product.slug %}" class="btn">
+                            <a href="{% url "cart:cart_add" %}" class="btn btn add-to-cart"
+                            data-product-id="{{ product.id }}">
+                            {% csrf_token %}
                               <img class="mx-1" src="{% static "deps/images/basket.svg" %}" alt="Catalog Icon" width="32"
                                 height="32">
                             </a>
