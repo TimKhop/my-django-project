@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL, LOGIN_URL, MEDIA_ROOT, MEDIA_URL
+from django.conf.global_settings import AUTH_USER_MODEL, DEFAULT_FROM_EMAIL, LOGIN_URL, MEDIA_ROOT, MEDIA_URL
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'goods.context_processors.catalog',
+                'main.context_processors.base_context',
             ],
         },
     },
@@ -156,3 +157,12 @@ INTERNAL_IPS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465  # Порт для SSL
+EMAIL_USE_SSL = True  # Использовать SSL
+EMAIL_HOST_USER = 'TiMe2003R@yandex.ru'
+EMAIL_HOST_PASSWORD = 'fnkvpsvcejbqvpgw'  # Пароль приложения
+
+

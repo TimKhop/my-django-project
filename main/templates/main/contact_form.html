@@ -1,0 +1,36 @@
+<!-- main/contact_form.html -->
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Напишите нам</h3>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'main:contact' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="id_message" class="form-label">Сообщение:</label>
+                        {{ form.message }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="id_name" class="form-label">Имя:</label>
+                        {{ form.name }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="id_email" class="form-label">Email:</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-warning">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

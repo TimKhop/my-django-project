@@ -241,60 +241,41 @@
     {% endblock %}
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+<!-- base.html -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Напишите нам</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <label for="username" class="col-form-label">Текст сообщения:</label>
-                        <input type="text" class="form-control" id="Message"
-                            placeholder="Сообщение" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="password1" class="form-label">Имя:</label>
-                        <input type="text" class="form-control" id="Name"
-                            placeholder="Введите ваше имя" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="password1" class="form-label">Email:</label>
-                        <input type="text" class="form-control" id="Email"
-                            placeholder="Введите ваш Email" required>
-                    </div>
-                </div>
-                <div class="container-fluid btn-position btn-regstration">
-                    <div class="btn-row">
-                        <div class="col-lg-2">
-                            <button type="button"
-                                class="btn btn-warning mt-2 mb-2">Отправить</button>
-                        </div>
-                        <div class="col-lg-10 link-login">
-                            <div class="social-network-link">
-                                Наши социальные сети:
-                                <a href="https://t.me/Timofei2003"><img style="width: 28px; margin-inline: 0.5em;"
-                                    src="{% static "deps/images/TG.png" %}" alt="TG"></a>
-                                <a href="https://vk.com/tim3002"><img style="width: 46px;"
-                                    src="{% static "deps/images/VK.png" %}" alt="VK"></a>
-                            </div>
-                            <div class="number-phone mt-2">
-                                <p>Наш телефон: +7-927-622-38-73</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
-        </div>
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Напишите нам</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-body">
+              <form action="{% url 'main:contact' %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                      <div class="col-md-12 mb-3">
+                          <label for="id_message" class="form-label">Сообщение:</label>
+                          {{ contact_form.message }}  <!-- Используйте форму из контекста -->
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="id_name" class="form-label">Имя:</label>
+                          {{ contact_form.name }}
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="id_email" class="form-label">Email:</label>
+                          {{ contact_form.email }}
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-warning">Отправить</button>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+          </div>
       </div>
-        </div>
-    </div>
+  </div>
+</div>
+
   </section>
 
   <footer>
@@ -308,9 +289,10 @@
         <div class="col-lg-4 col-md-12 footer-text text-center media-links">
           <div class="footer-about">
             <p><a href="{% url "main:about" %}">О наc</a></p>
-            <a class="nav-link-footer" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a  class="nav-link-footer" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <p>Напишите нам</p>
             </a>
+            <p><a href="{% url 'main:contact' %}">Обратная связь</a></p> <!-- Ссылка на форму обратной связи -->
             </p>
           </div>
         </div>
