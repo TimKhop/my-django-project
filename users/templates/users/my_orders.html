@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load carts_tags %}
 
 {% block content %}
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -134,19 +135,18 @@
                 </div>
                 <div class="card content-shop-cat mt-4">
                     <div class="accordion accordion-group-flush" id="accordionFlushExample">
+                        {% for order in orders %}
                         <div class="accordion-item">
                             <div class="name-good bg-body-tertiary">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                        aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Заказ №1 - 11 апреля 2024 11:12 | Статус:
-                                        <strong class="mx-2">В обработке</strong>
+                                <h2 class="accordion-header" id="{{ order.id }}">
+                                    <button class="accordion-button {% if order != orders.0 %}collapsed{% endif %}" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}"
+                                        aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                                        Заказ {{ order.id }} - {{ order.created_timestamp }} | Статус: <strong class="mx-2"> {{order.requires_delivery}} </strong>
                                     </button>
                                 </h2>
                             </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionFlushExample">
+                            <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders.0 %}show{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div class="table-responsive">
                                         <table class="table" class="table table-striped">
@@ -159,23 +159,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {% for item in order.orderitem_set.all %}
                                                 <tr>
-                                                    <td>Горный велосипед 707W</td>
-                                                    <td>1</td>
-                                                    <td>41390 ₽</td>
-                                                    <td>41390 ₽</td>
+                                                    <td><a class="text-dark" href="{% url 'goods:product' item.product.slug %}">{{ item.product.name }}</a></td>
+                                                    <td>{{ item.quantity }}</td>
+                                                    <td>{{ item.price }} ₽</td>
+                                                    <td>{{ item.products_price }} ₽</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p class="p-0 m-0"><strong>Итого</strong></p>
-                                        <p class="p-0 m-0"><strong>41390 ₽</strong></p>
+                                        <p class="p-0 m-0"><strong>{{ item.products_price }} ₽</strong></p>
                                     </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        {% endfor %}
+                        {% comment %} <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
@@ -213,7 +216,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>

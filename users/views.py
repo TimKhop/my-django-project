@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib import auth, messages
@@ -6,6 +7,7 @@ from django.urls import reverse
 
 
 from carts.models import Cart
+from orders.models import Order, OrderItem
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
 def login(request):
@@ -74,7 +76,7 @@ def profile(request):
 
     context = {
         "title": "Спорт Лайн - Профиль", 
-        'form': form
+        'form': form,
     }
     return render(request, 'users/profile.html', context)  # Шаблон, который содержит модальное окно
 
@@ -85,8 +87,34 @@ def logout(request):
     return redirect(reverse('main:index'))
 
 def my_orders(request):
+
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f" Профиль успешно обновлен ")
+            return HttpResponseRedirect(reverse('user:profile'))
+        else:
+            # Возвращаем страницу, которая содержит модальное окно, с контекстом, чтобы показать ошибки
+            context = {
+                'form': form
+            }
+    else:
+        form = ProfileForm(instance=request.user)
+
+    orders = (
+            Order.objects.filter(user=request.user).prefetch_related(
+                Prefetch(
+                    'orderitem_set',
+                    queryset=OrderItem.objects.select_related('product')
+                )
+            ).order_by('-id')
+        )
+
     context = {
         "title": "Спорт Лайн - Мои заказы", 
+        'form': form,
+        'orders': orders,
         }
     return render(request, "users/my_orders.html", context)
 
@@ -95,4 +123,6 @@ def users_cart(request):
         "title": "Спорт Лайн - Корзина", 
         }
     return render(request, "users/users_cart.html", context)
+
+
     
