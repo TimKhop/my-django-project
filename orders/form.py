@@ -6,14 +6,9 @@ class CreateOrderForm(forms.Form):
 
     first_name = forms.CharField()
     last_name = forms.CharField()
+    email = forms.CharField()
     phone_number = forms.CharField()
     delivery_address = forms.CharField()
-    payment_on_get = forms.ChoiceField(
-        choices=[
-            ("0", 'False'),
-            ("1", 'True'),
-            ],
-        )
 
     def clean_phone_number(self):
         data = self.cleaned_data['phone_number']
