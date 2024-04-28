@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
   <header>
     <div class="container-fluid mt-4">
       <div class="row">
@@ -94,7 +95,7 @@
   </header>
 
   <section>
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
       tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -239,42 +240,75 @@
     {% block content %}
 
     {% endblock %}
-
-    <!-- Modal -->
-<!-- base.html -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Напишите нам</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-          </div>
-          <div class="modal-body">
-              <form action="{% url 'main:contact' %}" method="post">
-                  {% csrf_token %}
-                  <div class="row">
-                      <div class="col-md-12 mb-3">
-                          <label for="id_message" class="form-label">Сообщение:</label>
-                          {{ contact_form.message }}  <!-- Используйте форму из контекста -->
+    <div class="container mt-4" id="notification-container"></div>
+        <!-- Modal -->
+    <!-- base.html -->
+    {% comment %} <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Напишите нам</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+              </div>
+              <div class="modal-body">
+                  <form action="{% url 'main:contact' %}" method="post">
+                      {% csrf_token %}
+                      <div class="row">
+                          <div class="col-md-12 mb-3">
+                              <label for="id_message" class="form-label">Сообщение:</label>
+                              {{ contact_form.message }}  <!-- Используйте форму из контекста -->
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="id_name" class="form-label">Имя:</label>
+                              {{ contact_form.name }}
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="id_email" class="form-label">Email:</label>
+                              {{ contact_form.email }}
+                          </div>
                       </div>
-                      <div class="col-md-6 mb-3">
-                          <label for="id_name" class="form-label">Имя:</label>
-                          {{ contact_form.name }}
-                      </div>
-                      <div class="col-md-6 mb-3">
-                          <label for="id_email" class="form-label">Email:</label>
-                          {{ contact_form.email }}
-                      </div>
-                  </div>
-                  <button type="submit" class="btn btn-warning">Отправить</button>
-              </form>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+                      <button type="submit" class="btn btn-warning">Отправить</button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+              </div>
           </div>
       </div>
-  </div>
-</div>
+    </div> {% endcomment %}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Напишите нам</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+              </div>
+              <div class="modal-body">
+                  <form id="contactForm" action="{% url 'main:contact' %}" method="post">
+                      {% csrf_token %}
+                      <div class="row">
+                          <div class="col-md-12 mb-3">
+                              <label for="id_message" class="form-label">Сообщение:</label>
+                              {{ contact_form.message }}  <!-- Используем форму из контекста -->
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="id_name" class="form-label">Имя:</label>
+                              {{ contact_form.name }}
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="id_email" class="form-label">Email:</label>
+                              {{ contact_form.email }}
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-warning">Отправить</button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+              </div>
+          </div>
+      </div>
+    </div>
 
   </section>
 

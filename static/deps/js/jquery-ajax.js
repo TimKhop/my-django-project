@@ -191,5 +191,57 @@ $(document).ready(function () {
     }
 
 
+    $('#staticBackdrop').on('hidden.bs.modal', function() {
+        $(this).find('form')[0].reset();  // Сбрасываем поля формы при закрытии
+        // Удаляем все сообщения об ошибках
+        $(this).find('.alert').remove();
+    });
     
+    // Обработчик отправки формы через AJAX
+    $("#contactForm").on("submit", function(e) {
+        e.preventDefault();  // Останавливаем действие по умолчанию
+        var formData = $(this).serialize();  // Получаем данные формы
+    
+        $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),  // URL из формы
+            data: formData,
+            success: function(data) {
+                if (data.success) {
+                    // Если успешно, закрываем модальное окно
+                    $("#staticBackdrop").modal("hide");
+    
+                    // Добавляем зеленое уведомление
+                    var notification = $('<div class="alert alert-success alert-dismissible fade show">Сообщение отправлено успешно!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button></div>');
+                    
+                    // Добавляем уведомление в начало контейнера
+                    $("#notification-container").append(notification);
+    
+                    // Удаляем уведомление через 3 секунды
+                    setTimeout(function() {
+                        notification.alert("close");
+                    }, 3000);
+                }
+            },
+            error: function(data) {  // Если ошибка
+                if (data.responseJSON && !data.responseJSON.success) {  // Проверяем ошибки валидации
+                    const errors = data.responseJSON.errors;  // Получаем ошибки
+                    const form = $("#contactForm");
+    
+                    // Удаляем предыдущие сообщения об ошибках
+                    form.find(".alert").remove();
+    
+                    // Отображаем ошибки рядом с полями
+                    Object.keys(errors).forEach(field => {
+                        const errorMsg = `<div class="alert alert-danger">${errors[field].join(", ")}</div>`;
+                        form.find(`[name=${field}]`).after(errorMsg);  // Показываем ошибки рядом с полем
+                    });
+                } else {
+                    console.error("Ошибка при отправке формы");
+                }
+            }
+        });
+    });
+
+   
 });

@@ -1,0 +1,10 @@
+{% comment %} {% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h3>Ваш заказ оформлен</h3>
+    <p>Отсканируйте QR-код для оплаты:</p>
+    <img src="data:image/png;base64, {{ qr_code|b64encode }}" alt="QR Code for Order" />
+    <p>Заказ №{{ order.id }}, Сумма: {{ order.total_price }}₽</p>
+</div>
+{% endblock %} {% endcomment %}

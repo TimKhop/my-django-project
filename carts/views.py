@@ -1,9 +1,18 @@
-from django.http import JsonResponse
+import base64
+from django.http import FileResponse, HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 from carts.models import Cart
 from carts.utils import get_user_carts
 from goods.models import Products
+
+import qrcode
+from io import BytesIO
+from django.views.decorators.csrf import csrf_exempt
+
+from orders.models import Order
 
 def cart_add(request):
     

@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "carts.middleware.DisableBrowserCachingMiddleware",
 ]
 
 ROOT_URLCONF = 'app.urls'

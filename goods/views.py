@@ -40,27 +40,28 @@ def action(request):
         },
     )
 
-
 def new_goods(request):
+    # Получаем параметр сортировки из запроса
     order_by = request.GET.get('order_by', 'default')
 
+    # Фильтруем товары, чтобы показать только новинки
     catalog_cart_new_goods = Products.objects.filter(new="Да")
 
+    # Сортировка товаров по цене, если указано в запросе
     if order_by == 'price':
-        catalog_cart_new_goods = catalog_cart_new_goods.order_by('price')
+        catalog_cart_new_goods = catalog_cart_new_goods.order_by('price')  # По возрастанию цены
     elif order_by == '-price':
-        catalog_cart_new_goods = catalog_cart_new_goods.order_by('-price')
+        catalog_cart_new_goods = catalog_cart_new_goods.order_by('-price')  # По убыванию цены
 
-    return render(
-        request,
-        "goods/new_goods.html",
-        {
-            "title": "Спорт Лайн - Новинки",
-            "catalog_cart_new_goods": catalog_cart_new_goods,
-            "order_by": order_by,
-        },
-    )
+    # Контекст для шаблона
+    context = {
+        "title": "Спорт Лайн - Новинки",
+        "catalog_cart_new_goods": catalog_cart_new_goods,
+        "order_by": order_by,
+    }
 
+    # Возвращаем шаблон с контекстом
+    return render(request, "goods/new_goods.html", context)
 
 def catalog_category(request, category_slug=None):
     on_sale = request.GET.get('on_sale', None)

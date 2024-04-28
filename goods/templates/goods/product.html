@@ -18,6 +18,10 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item id_card_good">id: {{ product.display_id }}</li>
+                                        <!-- Добавляем отображение количества в наличии -->
+                                        {% if product.quantity > 0 %}
+                                            <li class="list-group-item px-0">В наличии: {{ product.quantity }}</li>
+                                        {% endif %}
                                     </ul>
                                     <div class="justify-content-between">
                                         <p><strong>Цена: {{ product.sell_price }}₽</strong>
@@ -25,20 +29,25 @@
                                     </div>
                                     <div class="btn-row">
                                         <div class="col-lg-12">
-                                            <a href="{% url "cart:cart_add" %}" class="btn add-to-cart"
-                                            data-product-id="{{ product.id }}">
-                                                <button type="button" class="btn btn-warning">
-                                                {% csrf_token %}
-                                                Добавить в корзину</button>
-                                            </a>
+                                            <!-- Проверяем, есть ли товар в наличии -->
+                                            {% if product.quantity > 0 %}
+                                                <a href="{% url "cart:cart_add" %}" class="btn add-to-cart px-0" data-product-id="{{ product.id }}">
+                                                    <button type="button" class="btn btn-warning">
+                                                    {% csrf_token %}
+                                                    Добавить в корзину
+                                                    </button>
+                                                </a>
+                                            {% else %}
+                                                <!-- Если товара нет, отображаем сообщение -->
+                                                <p class="text-danger">Товар отсутствует в наличии</p>
+                                            {% endif %}
                                         </div>
-                                        <div class="col-lg-8"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <a href="card_good.html">
                                         <h5 class="card-title">{{ product.name }}</h5>
-                                      </a>
+                                    </a>
                                     <p class="card-text">{{ product.description }}</p>
                                 </div>
                             </div>

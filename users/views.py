@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib import auth, messages
 from django.urls import reverse
-
+from django.contrib.auth.forms import AuthenticationForm
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
@@ -124,5 +124,3 @@ def users_cart(request):
         }
     return render(request, "users/users_cart.html", context)
 
-
-    
