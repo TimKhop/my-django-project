@@ -58,7 +58,7 @@
 
                       {% for product in catalog_cart_action %}
                         <div class="col-lg-4 col-md-6 mt-4">
-                          <div class="card custom-shadow">
+                          <div class="card custom-shadow {% if product.quantity <= 0 %}card-out-of-stock{% endif %}">
                               <a href="{% url "catalog:product" product.slug %}">
                                   <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                               </a>

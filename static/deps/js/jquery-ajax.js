@@ -45,7 +45,12 @@ $(document).ready(function () {
                 var cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
 
+                if (cartCount > 0) {
+                    $("#checkout-button").show();  // Показать кнопку
+                }
+
             },
+            
 
             error: function (data) {
                 console.log("Ошибка при добавлении товара в корзину");
@@ -96,6 +101,9 @@ $(document).ready(function () {
                 var cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
 
+                if (cartCount === 0) {
+                    $("#checkout-button").hide();  // Скрыть кнопку
+                }
             },
 
             error: function (data) {
@@ -183,7 +191,7 @@ $(document).ready(function () {
 
     // Берем из разметки элемент по id - оповещения от django
     var notification = $('#notification');
-    // И через 7 сек. убираем
+    // И через 3 сек. убираем
     if (notification.length > 0) {
         setTimeout(function () {
             notification.alert('close');
@@ -243,5 +251,14 @@ $(document).ready(function () {
         });
     });
 
-   
+
+
+
+
+
+
+
+
+
+    
 });

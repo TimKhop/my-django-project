@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+
 from django.conf.global_settings import AUTH_USER_MODEL, DEFAULT_FROM_EMAIL, LOGIN_URL, MEDIA_ROOT, MEDIA_URL
+
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,9 +145,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
     ]
 
-MEDIA_URL = 'media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'  # Убедитесь, что URL начинается со слэша
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Убедитесь, что путь правильный
 
 
 INTERNAL_IPS = [

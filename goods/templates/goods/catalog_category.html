@@ -80,7 +80,7 @@
                         <div class="row">
                           {% for product in products %}
                           <div class="col-lg-4 col-md-6 mt-4">
-                              <div class="card custom-shadow">
+                              <div class="card custom-shadow {% if product.quantity <= 0 %}card-out-of-stock{% endif %}">
                                   <a href="{% url 'catalog:product' product.slug %}">
                                       <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                                   </a>
@@ -114,8 +114,8 @@
                                   </ul>
                                   <div class="d-flex justify-content-between align-items-center">
                                       {% if product.discount %}
-                                          <p><s>{{ product.sell_price }}₽</s></p>
-                                          <p><strong>{{ product.price }}₽</strong></p>
+                                          <p><s>{{ product.price }}₽</s></p>
+                                          <p><strong>{{ product.sell_price }}₽</strong></p>
                                       {% else %}
                                           <p><strong>{{ product.price }}₽</strong></p>
                                       {% endif %}

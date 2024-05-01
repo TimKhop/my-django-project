@@ -1,6 +1,7 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
+
 from django.db import models
 from django.urls import reverse
 
@@ -68,3 +69,4 @@ class Products(models.Model):
             return round(self.price - self.price * self.discount / 100, 0)
         
         return self.price
+    

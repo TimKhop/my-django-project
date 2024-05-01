@@ -23,7 +23,7 @@
                         <div class="btn-row">
                             {% if carts %}               
                             <div class="col-lg-2">
-                                <a href="{% url "orders:create_order" %}"><button type="button" class="btn btn-warning mb-4">Оформить заказ</button></a>
+                                <a href="{% url "orders:create_order" %}"><button type="button" class="btn btn-warning mb-4" id="checkout-button">Оформить заказ</button></a>
                             </div>
                             {% endif %}
                             <div class="col-lg-10"></div>

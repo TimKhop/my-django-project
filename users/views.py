@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Sum, F
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib import auth, messages
@@ -110,6 +110,9 @@ def my_orders(request):
                 )
             ).order_by('-id')
         )
+    
+    for order in orders:
+        order.total_price = order.orderitem_set.aggregate(total=Sum(F('price') * F('quantity')))['total']
 
     context = {
         "title": "Спорт Лайн - Мои заказы", 

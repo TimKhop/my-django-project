@@ -195,3 +195,8 @@ header {
 .name_catalog_left {
     list-style: none;
   }
+
+  .card-out-of-stock {
+    opacity: 0.5; /* Полупрозрачность */
+    filter: grayscale(60%); /* Применяет серый цвет ко всей карточке */
+}
