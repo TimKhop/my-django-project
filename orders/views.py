@@ -12,7 +12,6 @@ from carts.models import Cart
 from orders.form import CreateOrderForm
 from orders.models import Order, OrderItem
 
-from .qr_utils import generate_qr_code
 from io import BytesIO
 from django.core.files.base import ContentFile
 from django.urls import reverse
@@ -30,7 +29,7 @@ def create_order(request):
 
                     if not cart_items.exists():
                         messages.warning(request, "Ваша корзина пуста.")
-                        return redirect("cart:view_cart")
+                        return redirect("goods:catalog")
 
                     # Создание заказа
                     order = Order.objects.create(

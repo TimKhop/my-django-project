@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from goods.models import Categories, Products
+from users.forms import UserRegistrationForm
 from .forms import ContactForm
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -111,3 +112,4 @@ def handle_contact_form(request):
     else:
         form = ContactForm()  # Создаем новую форму для GET-запроса
         return render(request, 'main/contact_form.html', {'form': form})
+    

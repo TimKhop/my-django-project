@@ -21,6 +21,7 @@
                         </div>
                     <div class="container-fluid btn-position">
                         <div class="btn-row">
+                            <input type="hidden" id="user-authenticated" value="{{ request.user.is_authenticated }}" />
                             {% if carts %}               
                             <div class="col-lg-2">
                                 <a href="{% url "orders:create_order" %}"><button type="button" class="btn btn-warning mb-4" id="checkout-button">Оформить заказ</button></a>

@@ -7,10 +7,15 @@ from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm
 
 from carts.models import Cart
+from goods.models import Categories, Products
 from orders.models import Order, OrderItem
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
+
 def login(request):
+    categories = Categories.objects.all()  # Использование модели Categories
+    action = Products.objects.filter(discount__gt=0, quantity__gt=0).order_by('?')[:3]
+    new_goods = Products.objects.filter(new="Да", quantity__gt=0).order_by('?')[:3]
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -31,11 +36,18 @@ def login(request):
         else:
             # Возвращаем страницу, которая содержит модальное окно, с контекстом, чтобы показать ошибки
             context = {
+                'title': 'Спорт Лайн - Главная',
                 'form': form,
+                'categories': categories,
+                'action': action,
+                'new_goods': new_goods,
             }
             return render(request, 'main/index.html', context)  # Шаблон, который содержит модальное окно
 
 def registration(request):
+    categories = Categories.objects.all()  # Использование модели Categories
+    action = Products.objects.filter(discount__gt=0, quantity__gt=0).order_by('?')[:3]
+    new_goods = Products.objects.filter(new="Да", quantity__gt=0).order_by('?')[:3]
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
@@ -54,10 +66,13 @@ def registration(request):
         else:
             # Возвращаем страницу, которая содержит модальное окно, с контекстом, чтобы показать ошибки
             context = {
-                'form': form
+                'title': 'Спорт Лайн - Главная',
+                'form': form,
+                'categories': categories,
+                'action': action,
+                'new_goods': new_goods,
             }
             return render(request, 'main/index.html', context)  # Шаблон, который содержит модальное окно
-
 @login_required
 def profile(request):
     if request.method == 'POST':

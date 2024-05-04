@@ -253,12 +253,18 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
+    var isUserAuthenticated = $("#user-authenticated").val() === 'True';  // Проверка авторизации
     
+    console.log("isUserAuthenticated:", isUserAuthenticated);  // Проверяем значение в консоли
+
+    $("#checkout-button").on("click", function(e) {
+        e.preventDefault();  // Блокируем действие по умолчанию
+
+        if (!isUserAuthenticated) {
+            $("#exampleModalToggle2").modal("show");  // Если неавторизован, открыть модальное окно
+        } else {
+            console.log("Redirecting to order creation");  // Проверка, что ветка отрабатывает
+            window.location.href = '/orders/create_order/';  // Проверьте правильность URL
+        }
+    });
 });
