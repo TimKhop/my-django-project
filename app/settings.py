@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 
-from django.conf.global_settings import AUTH_USER_MODEL, DEFAULT_FROM_EMAIL, LOGIN_URL, MEDIA_ROOT, MEDIA_URL
+from django.conf.global_settings import AUTH_USER_MODEL, AUTHENTICATION_BACKENDS, DEFAULT_FROM_EMAIL, LOGIN_URL, MEDIA_ROOT, MEDIA_URL
 
 import os
 
@@ -172,3 +172,7 @@ EMAIL_HOST_USER = 'TiMe2003R@yandex.ru'
 EMAIL_HOST_PASSWORD = 'fnkvpsvcejbqvpgw'  # Пароль приложения
 
 
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend', 
+    'users.authentication.EmailAuthBackend',
+}
