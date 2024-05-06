@@ -19,9 +19,6 @@ import os
 
 from dotenv import load_dotenv
 
-import dj_database_url
-
-
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,13 +29,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("True", "False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
-
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -100,9 +96,8 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.parse(database_url) if database_url else {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'home',
         'USER': 'home',
@@ -111,6 +106,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
