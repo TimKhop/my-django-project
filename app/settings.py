@@ -170,9 +170,3 @@ EMAIL_PORT = 465  # Порт для SSL
 EMAIL_USE_SSL = True  # Использовать SSL
 EMAIL_HOST_USER = 'TiMe2003R@yandex.ru'
 EMAIL_HOST_PASSWORD = 'fnkvpsvcejbqvpgw'  # Пароль приложения
-
-
-AUTHENTICATION_BACKENDS = {
-    'django.contrib.auth.backends.ModelBackend', 
-    'users.authentication.EmailAuthBackend',
-}
