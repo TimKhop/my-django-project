@@ -118,10 +118,13 @@
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="col-md-6 mb-3">
-                                                                    <label for="cooment"
-                                                                        class="form-label">Комментарий курьеру</label>
+                                                                    <label for="id_comment" class="form-label">Комментарий курьеру
+                                                                    </label>
                                                                     <input type="text" class="form-control"
-                                                                        id="number" placeholder="Оставьте у двери"
+                                                                        id="id_comment"
+                                                                        value="{% if form.comment.value %}{{ form.comment.value }}{% endif %}"
+                                                                        name="comment"
+                                                                        placeholder="Оставьте у двери"
                                                                         required>
                                                                 </div>
                                                             </div>

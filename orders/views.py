@@ -8,6 +8,7 @@ import qrcode
 
 from carts.models import Cart
 
+from main.forms import ContactForm
 from orders.form import CreateOrderForm
 from orders.models import Order, OrderItem
 
@@ -18,6 +19,17 @@ from django.urls import reverse
 
 @login_required
 def create_order(request):
+    initial = {
+        'first_name': request.user.first_name,
+        'last_name': request.user.first_name,
+        'email': request.user.first_name,
+        'phone_number': request.user.first_name,
+        }
+
+    form = CreateOrderForm(initial=initial)
+     
+
+
     if request.method == 'POST':
         form = CreateOrderForm(data=request.POST)
         if form.is_valid():
@@ -33,8 +45,12 @@ def create_order(request):
                     # Создание заказа
                     order = Order.objects.create(
                         user=user,
+                        first_name = form.cleaned_data['first_name'],
+                        last_name = form.cleaned_data['last_name'],
                         phone_number=form.cleaned_data['phone_number'],
                         delivery_address=form.cleaned_data['delivery_address'],
+                        comment = form.cleaned_data.get('comment', None),
+                        email = form.cleaned_data['email'],
                     )
 
                     total_amount = 0  # Общая сумма заказа
@@ -95,6 +111,7 @@ def create_order(request):
             'first_name': request.user.first_name,
             'last_name': request.user.last_name,
             'email': request.user.email,
+            'phone_number': request.user.phone_number,
             }
 
         form = CreateOrderForm(initial=initial)

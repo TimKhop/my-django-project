@@ -78,6 +78,18 @@
                                         <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
                                         {% endif %}
                                     </div>
+                                    <div class="col-md-9 mb-3">
+                                        <label for="id_phone_number" class="form-label">Введите ваш телефон*</label>
+                                        <input type="text" class="form-control" 
+                                        id="id_phone_number"
+                                        name="phone_number"
+                                        placeholder="В формате: XXX-XXX-XX-XX" 
+                                        value="{{ form.phone_number.value }}"
+                                        required>
+                                        {% if form.phone_number.errors %}
+                                            <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                                 <div class="container-fluid btn-position btn-regstration">
                                     <div class="btn-row">

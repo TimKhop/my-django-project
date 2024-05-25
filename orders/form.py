@@ -4,11 +4,12 @@ from django import forms
 
 class CreateOrderForm(forms.Form):
 
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.CharField()
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    email = forms.EmailField(required=False)
     phone_number = forms.CharField()
-    delivery_address = forms.CharField()
+    delivery_address = forms.CharField(required=False)
+    comment = forms.CharField(required=False)
 
     def clean_phone_number(self):
         data = self.cleaned_data['phone_number']
