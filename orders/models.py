@@ -1,6 +1,4 @@
 from django.db import models
-from django.template.defaultfilters import first
-from tomlkit import comment
 from goods.models import Products
 
 from users.models import User

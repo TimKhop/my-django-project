@@ -2,8 +2,6 @@
 {% load static %}
 {% load carts_tags %}
 {% user_carts request as carts %}
-
-
 {% block content %}
 <div class="container-fluid">
     <div class="row">
@@ -19,6 +17,7 @@
                             {% include "carts/includes/included_cart.html" %}
                             <!-- Закончилась разметка корзины -->
                         </div>
+                    </div>  
                     <div class="container-fluid btn-position">
                         <div class="btn-row">
                             <input type="hidden" id="user-authenticated" value="{{ request.user.is_authenticated }}" />
@@ -27,7 +26,8 @@
                                 <a href="{% url "orders:create_order" %}"><button type="button" class="btn btn-warning mb-4" id="checkout-button">Оформить заказ</button></a>
                             </div>
                             {% endif %}
-                            <div class="col-lg-10"></div>
+                            <div class="col-lg-10">
+                            </div>
                         </div>
                     </div>
                 </div>
